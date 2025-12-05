@@ -2,95 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Catppuccin Mocha Theme - Terminal Portfolio */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Catppuccin Mocha Base Colors */
+    --ctp-rosewater: 10 56% 91%;
+    --ctp-flamingo: 0 59% 88%;
+    --ctp-pink: 316 72% 86%;
+    --ctp-mauve: 267 84% 81%;
+    --ctp-red: 343 81% 75%;
+    --ctp-maroon: 350 65% 77%;
+    --ctp-peach: 23 92% 75%;
+    --ctp-yellow: 41 86% 83%;
+    --ctp-green: 115 54% 76%;
+    --ctp-teal: 170 57% 73%;
+    --ctp-sky: 189 71% 73%;
+    --ctp-sapphire: 199 76% 69%;
+    --ctp-blue: 217 92% 76%;
+    --ctp-lavender: 232 97% 85%;
+    --ctp-text: 226 64% 88%;
+    --ctp-subtext1: 227 35% 80%;
+    --ctp-subtext0: 228 24% 72%;
+    --ctp-overlay2: 228 17% 63%;
+    --ctp-overlay1: 227 13% 55%;
+    --ctp-overlay0: 229 13% 47%;
+    --ctp-surface2: 228 13% 39%;
+    --ctp-surface1: 227 15% 31%;
+    --ctp-surface0: 230 14% 23%;
+    --ctp-base: 240 21% 15%;
+    --ctp-mantle: 240 21% 12%;
+    --ctp-crust: 240 23% 9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Semantic tokens mapping to Catppuccin */
+    --background: var(--ctp-base);
+    --foreground: var(--ctp-text);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: var(--ctp-surface0);
+    --card-foreground: var(--ctp-text);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: var(--ctp-surface0);
+    --popover-foreground: var(--ctp-text);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary: var(--ctp-lavender);
+    --primary-foreground: var(--ctp-crust);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: var(--ctp-surface1);
+    --secondary-foreground: var(--ctp-text);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: var(--ctp-surface0);
+    --muted-foreground: var(--ctp-subtext0);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: var(--ctp-mauve);
+    --accent-foreground: var(--ctp-crust);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: var(--ctp-red);
+    --destructive-foreground: var(--ctp-crust);
 
-    --radius: 0.5rem;
+    --border: var(--ctp-surface1);
+    --input: var(--ctp-surface1);
+    --ring: var(--ctp-lavender);
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.75rem;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Terminal specific */
+    --terminal-bg: var(--ctp-mantle);
+    --terminal-header: var(--ctp-crust);
+    --terminal-border: var(--ctp-surface0);
+    --prompt-user: var(--ctp-green);
+    --prompt-at: var(--ctp-subtext0);
+    --prompt-host: var(--ctp-blue);
+    --prompt-path: var(--ctp-mauve);
+    --prompt-symbol: var(--ctp-text);
+    --cursor: var(--ctp-rosewater);
+    --link: var(--ctp-sapphire);
+    --success: var(--ctp-green);
+    --warning: var(--ctp-yellow);
+    --info: var(--ctp-sky);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar */
+    --sidebar-background: var(--ctp-mantle);
+    --sidebar-foreground: var(--ctp-text);
+    --sidebar-primary: var(--ctp-lavender);
+    --sidebar-primary-foreground: var(--ctp-crust);
+    --sidebar-accent: var(--ctp-surface0);
+    --sidebar-accent-foreground: var(--ctp-text);
+    --sidebar-border: var(--ctp-surface0);
+    --sidebar-ring: var(--ctp-lavender);
   }
 }
 
@@ -99,7 +98,202 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  ::selection {
+    background: hsl(var(--ctp-mauve) / 0.3);
+    color: hsl(var(--ctp-text));
+  }
+}
+
+@layer components {
+  .terminal-window {
+    @apply rounded-xl overflow-hidden border border-terminal-border;
+    background: hsl(var(--terminal-bg));
+    box-shadow: 0 25px 50px -12px hsl(var(--ctp-crust) / 0.5);
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-3;
+    background: hsl(var(--terminal-header));
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-dot-red {
+    background: hsl(var(--ctp-red));
+  }
+
+  .terminal-dot-yellow {
+    background: hsl(var(--ctp-yellow));
+  }
+
+  .terminal-dot-green {
+    background: hsl(var(--ctp-green));
+  }
+
+  .terminal-body {
+    @apply p-6;
+  }
+
+  .prompt {
+    @apply flex items-center gap-1 flex-wrap;
+  }
+
+  .prompt-user {
+    color: hsl(var(--prompt-user));
+  }
+
+  .prompt-at {
+    color: hsl(var(--prompt-at));
+  }
+
+  .prompt-host {
+    color: hsl(var(--prompt-host));
+  }
+
+  .prompt-path {
+    color: hsl(var(--prompt-mauve));
+  }
+
+  .prompt-symbol {
+    color: hsl(var(--prompt-symbol));
+  }
+
+  .text-lavender {
+    color: hsl(var(--ctp-lavender));
+  }
+
+  .text-mauve {
+    color: hsl(var(--ctp-mauve));
+  }
+
+  .text-pink {
+    color: hsl(var(--ctp-pink));
+  }
+
+  .text-peach {
+    color: hsl(var(--ctp-peach));
+  }
+
+  .text-yellow {
+    color: hsl(var(--ctp-yellow));
+  }
+
+  .text-green {
+    color: hsl(var(--ctp-green));
+  }
+
+  .text-teal {
+    color: hsl(var(--ctp-teal));
+  }
+
+  .text-sky {
+    color: hsl(var(--ctp-sky));
+  }
+
+  .text-sapphire {
+    color: hsl(var(--ctp-sapphire));
+  }
+
+  .text-blue {
+    color: hsl(var(--ctp-blue));
+  }
+
+  .text-red {
+    color: hsl(var(--ctp-red));
+  }
+
+  .text-rosewater {
+    color: hsl(var(--ctp-rosewater));
+  }
+
+  .text-flamingo {
+    color: hsl(var(--ctp-flamingo));
+  }
+
+  .text-subtext {
+    color: hsl(var(--ctp-subtext0));
+  }
+
+  .text-overlay {
+    color: hsl(var(--ctp-overlay1));
+  }
+
+  .bg-surface {
+    background: hsl(var(--ctp-surface0));
+  }
+
+  .bg-mantle {
+    background: hsl(var(--ctp-mantle));
+  }
+
+  .border-surface {
+    border-color: hsl(var(--ctp-surface1));
+  }
+}
+
+@layer utilities {
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { 
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px hsl(var(--ctp-lavender) / 0.2);
   }
 }
