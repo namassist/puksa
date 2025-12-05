@@ -1,0 +1,164 @@
+import { useState, useRef, useEffect, ReactNode } from "react";
+import { TerminalWindow } from "./TerminalWindow";
+import { CommandInput } from "./CommandInput";
+import { CommandOutput } from "./CommandOutput";
+import { WelcomeOutput } from "./outputs/WelcomeOutput";
+import { HelpOutput } from "./outputs/HelpOutput";
+import { AboutOutput } from "./outputs/AboutOutput";
+import { SkillsOutput } from "./outputs/SkillsOutput";
+import { ExperienceOutput } from "./outputs/ExperienceOutput";
+import { ProjectsOutput } from "./outputs/ProjectsOutput";
+import { ContactOutput } from "./outputs/ContactOutput";
+import { SocialOutput } from "./outputs/SocialOutput";
+import { WhoamiOutput } from "./outputs/WhoamiOutput";
+import { LsOutput } from "./outputs/LsOutput";
+import { ErrorOutput } from "./outputs/ErrorOutput";
+
+interface OutputEntry {
+  id: number;
+  command: string;
+  content: ReactNode;
+}
+
+export const InteractiveTerminal = () => {
+  const [outputs, setOutputs] = useState<OutputEntry[]>([
+    { id: 0, command: "welcome", content: <WelcomeOutput /> },
+  ]);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const outputIdRef = useRef(1);
+
+  useEffect(() => {
+    // Scroll to bottom when new output is added
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [outputs]);
+
+  const getCommandOutput = (cmd: string): ReactNode => {
+    const command = cmd.toLowerCase().trim();
+    
+    switch (command) {
+      case "help":
+      case "?":
+        return <HelpOutput />;
+      case "about":
+      case "cat about.md":
+        return <AboutOutput />;
+      case "skills":
+      case "cat skills.json":
+        return <SkillsOutput />;
+      case "experience":
+      case "exp":
+      case "work":
+        return <ExperienceOutput />;
+      case "projects":
+      case "ls projects":
+        return <ProjectsOutput />;
+      case "contact":
+      case "cat contact.txt":
+        return <ContactOutput />;
+      case "social":
+      case "cat social.json":
+        return <SocialOutput />;
+      case "whoami":
+        return <WhoamiOutput />;
+      case "ls":
+      case "ls -la":
+      case "dir":
+        return <LsOutput />;
+      case "resume":
+      case "cv":
+        return (
+          <p className="text-foreground">
+            Opening resume... <span className="text-sapphire">(would open PDF in new tab)</span>
+          </p>
+        );
+      case "clear":
+      case "cls":
+        return null; // Special case handled in handleCommand
+      case "pwd":
+        return <p className="text-foreground">/home/visitor/portfolio</p>;
+      case "date":
+        return <p className="text-foreground">{new Date().toString()}</p>;
+      case "echo hello":
+      case "echo hi":
+        return <p className="text-green">Hello! 👋</p>;
+      case "sudo":
+      case "sudo su":
+      case "sudo -i":
+        return <p className="text-red">Nice try! 😄 But you don't have sudo privileges here.</p>;
+      case "exit":
+      case "quit":
+        return <p className="text-subtext">Thanks for visiting! (This is a portfolio, you can't actually exit 😉)</p>;
+      case "vim":
+      case "nano":
+      case "emacs":
+        return <p className="text-yellow">Editor wars? Let's not go there... 😅</p>;
+      case "":
+        return null;
+      default:
+        return <ErrorOutput command={command} />;
+    }
+  };
+
+  const handleCommand = (cmd: string) => {
+    const command = cmd.toLowerCase().trim();
+    
+    // Update command history
+    setCommandHistory((prev) => [...prev, cmd]);
+
+    // Handle clear command
+    if (command === "clear" || command === "cls") {
+      setOutputs([]);
+      return;
+    }
+
+    // Get output for command
+    const output = getCommandOutput(cmd);
+    
+    if (output !== null) {
+      setOutputs((prev) => [
+        ...prev,
+        {
+          id: outputIdRef.current++,
+          command: cmd,
+          content: output,
+        },
+      ]);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8">
+      <div className="w-full max-w-4xl">
+        <TerminalWindow title="visitor@portfolio: ~">
+          <div
+            ref={terminalRef}
+            className="max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-ctp-surface1 scrollbar-track-transparent"
+          >
+            {outputs.map((entry) => (
+              <CommandOutput key={entry.id} command={entry.command}>
+                {entry.content}
+              </CommandOutput>
+            ))}
+          </div>
+          
+          <div className="mt-4 pt-4 border-t border-ctp-surface0">
+            <CommandInput 
+              onCommand={handleCommand} 
+              history={commandHistory}
+            />
+          </div>
+        </TerminalWindow>
+        
+        <footer className="mt-6 text-center">
+          <p className="text-overlay text-xs">
+            <span className="text-subtext">{"/*"}</span> Built with React + Tailwind • Catppuccin Mocha Theme{" "}
+            <span className="text-subtext">{"*/"}</span>
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+};
