@@ -35,6 +35,8 @@ export const translations = {
       clear: "Clear terminal",
       welcome: "Show welcome screen",
       lang: "Change language (en/id)",
+      neofetch: "Display system info with ASCII art",
+      theme: "Switch color theme",
     },
 
     // About
@@ -106,6 +108,29 @@ export const translations = {
     resumeOpening: "Opening resume...",
     resumeNote: "(would open PDF in new tab)",
 
+    // Neofetch
+    neofetch: {
+      user: "visitor@portfolio",
+      os: "OS: ",
+      host: "Host: ",
+      kernel: "Kernel: ",
+      uptime: "Uptime: ",
+      uptimeValue: "since you arrived",
+      shell: "Shell: ",
+      resolution: "Resolution: ",
+      theme: "Theme: ",
+      terminal: "Terminal: ",
+    },
+
+    // Theme
+    theme: {
+      changed: "Theme changed to",
+      invalid: "Invalid theme specified.",
+      available: "Available themes:",
+      current: "current",
+      usage: "Usage: theme <mocha|latte|frappe|macchiato>",
+    },
+
     // Misc
     pwd: "/home/visitor/portfolio",
     helloResponse: "Hello! 👋",
@@ -149,6 +174,8 @@ export const translations = {
       clear: "Bersihkan terminal",
       welcome: "Tampilkan layar selamat datang",
       lang: "Ubah bahasa (en/id)",
+      neofetch: "Tampilkan info sistem dengan ASCII art",
+      theme: "Ganti tema warna",
     },
 
     // About
@@ -219,6 +246,29 @@ export const translations = {
     // Resume
     resumeOpening: "Membuka resume...",
     resumeNote: "(akan membuka PDF di tab baru)",
+
+    // Neofetch
+    neofetch: {
+      user: "pengunjung@portfolio",
+      os: "OS: ",
+      host: "Host: ",
+      kernel: "Kernel: ",
+      uptime: "Uptime: ",
+      uptimeValue: "sejak Anda tiba",
+      shell: "Shell: ",
+      resolution: "Resolusi: ",
+      theme: "Tema: ",
+      terminal: "Terminal: ",
+    },
+
+    // Theme
+    theme: {
+      changed: "Tema diubah ke",
+      invalid: "Tema tidak valid.",
+      available: "Tema yang tersedia:",
+      current: "aktif",
+      usage: "Penggunaan: theme <mocha|latte|frappe|macchiato>",
+    },
 
     // Misc
     pwd: "/home/pengunjung/portfolio",

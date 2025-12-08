@@ -13,7 +13,10 @@ import { SocialOutput } from "./outputs/SocialOutput";
 import { WhoamiOutput } from "./outputs/WhoamiOutput";
 import { LsOutput } from "./outputs/LsOutput";
 import { ErrorOutput } from "./outputs/ErrorOutput";
+import { NeofetchOutput } from "./outputs/NeofetchOutput";
+import { ThemeOutput } from "./outputs/ThemeOutput";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useTheme, CatppuccinTheme } from "@/lib/theme/ThemeContext";
 
 interface OutputEntry {
   id: number;
@@ -21,8 +24,11 @@ interface OutputEntry {
   content: ReactNode;
 }
 
+const validThemes: CatppuccinTheme[] = ["mocha", "latte", "frappe", "macchiato"];
+
 export const InteractiveTerminal = () => {
   const { t, language, setLanguage } = useLanguage();
+  const { theme, setTheme } = useTheme();
   const [outputs, setOutputs] = useState<OutputEntry[]>([
     { id: 0, command: "welcome", content: <WelcomeOutput /> },
   ]);
@@ -53,6 +59,16 @@ export const InteractiveTerminal = () => {
         );
       }
       return <p className="text-yellow">{t.langInvalid}</p>;
+    }
+
+    // Handle theme command
+    if (parts[0] === "theme") {
+      const newTheme = parts[1] as CatppuccinTheme;
+      if (validThemes.includes(newTheme)) {
+        setTheme(newTheme);
+        return <ThemeOutput theme={newTheme} success={true} />;
+      }
+      return <ThemeOutput theme="" success={false} />;
     }
     
     switch (command) {
@@ -87,6 +103,8 @@ export const InteractiveTerminal = () => {
       case "ls -la":
       case "dir":
         return <LsOutput />;
+      case "neofetch":
+        return <NeofetchOutput />;
       case "resume":
       case "cv":
         return (
