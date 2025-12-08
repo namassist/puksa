@@ -39,7 +39,7 @@ export const CommandInput = ({ onCommand, history }: CommandInputProps) => {
     } else if (e.key === "Tab") {
       e.preventDefault();
       // Auto-complete - added welcome and lang commands
-      const commands = ["help", "about", "experience", "projects", "contact", "clear", "ls", "whoami", "skills", "social", "resume", "welcome", "lang"];
+      const commands = ["help", "about", "experience", "projects", "contact", "clear", "ls", "whoami", "skills", "social", "resume", "welcome", "lang", "neofetch", "theme"];
       const match = commands.find(cmd => cmd.startsWith(input.toLowerCase()));
       if (match) setInput(match);
     }
