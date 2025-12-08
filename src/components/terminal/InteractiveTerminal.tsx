@@ -13,6 +13,7 @@ import { SocialOutput } from "./outputs/SocialOutput";
 import { WhoamiOutput } from "./outputs/WhoamiOutput";
 import { LsOutput } from "./outputs/LsOutput";
 import { ErrorOutput } from "./outputs/ErrorOutput";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface OutputEntry {
   id: number;
@@ -21,6 +22,7 @@ interface OutputEntry {
 }
 
 export const InteractiveTerminal = () => {
+  const { t, language, setLanguage } = useLanguage();
   const [outputs, setOutputs] = useState<OutputEntry[]>([
     { id: 0, command: "welcome", content: <WelcomeOutput /> },
   ]);
@@ -37,11 +39,29 @@ export const InteractiveTerminal = () => {
 
   const getCommandOutput = (cmd: string): ReactNode => {
     const command = cmd.toLowerCase().trim();
+    const parts = command.split(" ");
+    
+    // Handle lang command
+    if (parts[0] === "lang") {
+      const newLang = parts[1];
+      if (newLang === "en" || newLang === "id") {
+        setLanguage(newLang);
+        return (
+          <p className="text-green">
+            {newLang === "en" ? "Language changed to English" : "Bahasa diubah ke Indonesia"}
+          </p>
+        );
+      }
+      return <p className="text-yellow">{t.langInvalid}</p>;
+    }
     
     switch (command) {
       case "help":
       case "?":
         return <HelpOutput />;
+      case "welcome":
+      case "home":
+        return <WelcomeOutput />;
       case "about":
       case "cat about.md":
         return <AboutOutput />;
@@ -71,30 +91,30 @@ export const InteractiveTerminal = () => {
       case "cv":
         return (
           <p className="text-foreground">
-            Opening resume... <span className="text-sapphire">(would open PDF in new tab)</span>
+            {t.resumeOpening} <span className="text-sapphire">{t.resumeNote}</span>
           </p>
         );
       case "clear":
       case "cls":
         return null; // Special case handled in handleCommand
       case "pwd":
-        return <p className="text-foreground">/home/visitor/portfolio</p>;
+        return <p className="text-foreground">{t.pwd}</p>;
       case "date":
         return <p className="text-foreground">{new Date().toString()}</p>;
       case "echo hello":
       case "echo hi":
-        return <p className="text-green">Hello! 👋</p>;
+        return <p className="text-green">{t.helloResponse}</p>;
       case "sudo":
       case "sudo su":
       case "sudo -i":
-        return <p className="text-red">Nice try! 😄 But you don't have sudo privileges here.</p>;
+        return <p className="text-red">{t.sudoResponse}</p>;
       case "exit":
       case "quit":
-        return <p className="text-subtext">Thanks for visiting! (This is a portfolio, you can't actually exit 😉)</p>;
+        return <p className="text-subtext">{t.exitResponse}</p>;
       case "vim":
       case "nano":
       case "emacs":
-        return <p className="text-yellow">Editor wars? Let's not go there... 😅</p>;
+        return <p className="text-yellow">{t.editorResponse}</p>;
       case "":
         return null;
       default:
@@ -154,7 +174,7 @@ export const InteractiveTerminal = () => {
         
         <footer className="mt-6 text-center">
           <p className="text-overlay text-xs">
-            <span className="text-subtext">{"/*"}</span> Built with React + Tailwind • Catppuccin Mocha Theme{" "}
+            <span className="text-subtext">{"/*"}</span> Built with React + Tailwind • Catppuccin Mocha Theme • {language.toUpperCase()}{" "}
             <span className="text-subtext">{"*/"}</span>
           </p>
         </footer>

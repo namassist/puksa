@@ -1,6 +1,9 @@
 import { Github, Linkedin, Twitter, Mail, Globe } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const SocialOutput = () => {
+  const { t } = useLanguage();
+
   const links = [
     { icon: Github, label: "GitHub", value: "github.com/johndoe", href: "https://github.com", color: "text-foreground" },
     { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/johndoe", href: "https://linkedin.com", color: "text-blue" },
@@ -11,7 +14,7 @@ export const SocialOutput = () => {
 
   return (
     <div className="space-y-4">
-      <p className="text-lavender">// Social Links</p>
+      <p className="text-lavender">{t.socialTitle}</p>
       
       <div className="space-y-2">
         {links.map((link) => (

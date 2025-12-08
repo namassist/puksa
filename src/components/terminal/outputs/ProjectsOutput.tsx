@@ -1,6 +1,9 @@
 import { ExternalLink, Github } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const ProjectsOutput = () => {
+  const { t } = useLanguage();
+
   const projects = [
     {
       name: "CloudDeploy",
@@ -38,7 +41,7 @@ export const ProjectsOutput = () => {
 
   return (
     <div className="space-y-4">
-      <p className="text-lavender">// Featured Projects</p>
+      <p className="text-lavender">{t.projectsTitle}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.map((project) => (
@@ -84,7 +87,7 @@ export const ProjectsOutput = () => {
       </div>
       
       <p className="text-overlay text-sm">
-        Type <span className="text-green">social</span> to find more on GitHub.
+        {t.projectsTip} <span className="text-green">{t.projectsSocialCmd}</span> {t.projectsFindMore}
       </p>
     </div>
   );

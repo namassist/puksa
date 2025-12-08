@@ -1,10 +1,13 @@
 import { InteractiveTerminal } from "@/components/terminal/InteractiveTerminal";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
-      <InteractiveTerminal />
-    </main>
+    <LanguageProvider>
+      <main className="min-h-screen bg-background">
+        <InteractiveTerminal />
+      </main>
+    </LanguageProvider>
   );
 };
 

@@ -1,27 +1,31 @@
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+
 export const SkillsOutput = () => {
+  const { t } = useLanguage();
+
   const skillGroups = [
     { 
-      category: "Languages", 
+      category: t.categories.languages, 
       color: "text-blue",
       items: ["TypeScript", "JavaScript", "Python", "Go", "Rust"] 
     },
     { 
-      category: "Frontend", 
+      category: t.categories.frontend, 
       color: "text-green",
       items: ["React", "Next.js", "Vue", "Tailwind CSS", "Framer Motion"] 
     },
     { 
-      category: "Backend", 
+      category: t.categories.backend, 
       color: "text-mauve",
       items: ["Node.js", "Express", "FastAPI", "PostgreSQL", "Redis"] 
     },
     { 
-      category: "DevOps", 
+      category: t.categories.devops, 
       color: "text-peach",
       items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform"] 
     },
     { 
-      category: "Tools", 
+      category: t.categories.tools, 
       color: "text-pink",
       items: ["Git", "Linux", "Vim", "VS Code", "Figma"] 
     },
@@ -29,7 +33,7 @@ export const SkillsOutput = () => {
 
   return (
     <div className="space-y-4">
-      <p className="text-lavender">// Technical Skills</p>
+      <p className="text-lavender">{t.skillsTitle}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {skillGroups.map((group) => (
@@ -53,7 +57,7 @@ export const SkillsOutput = () => {
       
       <div className="flex items-center gap-2 text-sm">
         <span className="text-yellow">⚡</span>
-        <span className="text-subtext">Currently learning:</span>
+        <span className="text-subtext">{t.skillsLearning}</span>
         <span className="text-teal">WebAssembly, Zig</span>
       </div>
     </div>
