@@ -1,7 +1,11 @@
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+
 export const ExperienceOutput = () => {
+  const { t } = useLanguage();
+
   const experiences = [
     {
-      title: "Senior Software Engineer",
+      title: t.expRole1,
       company: "Tech Corp",
       period: "2022 - Present",
       highlights: [
@@ -11,7 +15,7 @@ export const ExperienceOutput = () => {
       ],
     },
     {
-      title: "Software Engineer",
+      title: t.expRole2,
       company: "StartupXYZ",
       period: "2020 - 2022",
       highlights: [
@@ -21,7 +25,7 @@ export const ExperienceOutput = () => {
       ],
     },
     {
-      title: "Junior Developer",
+      title: t.expRole3,
       company: "Digital Agency",
       period: "2019 - 2020",
       highlights: [
@@ -40,7 +44,7 @@ export const ExperienceOutput = () => {
 
   return (
     <div className="space-y-4">
-      <p className="text-lavender">// Work Experience</p>
+      <p className="text-lavender">{t.expTitle}</p>
       
       {experiences.map((exp, i) => (
         <div 
@@ -64,7 +68,7 @@ export const ExperienceOutput = () => {
       ))}
 
       <div className="mt-6">
-        <p className="text-lavender mb-3">// Certifications</p>
+        <p className="text-lavender mb-3">{t.expCertsTitle}</p>
         <div className="flex flex-wrap gap-3">
           {certs.map((cert) => (
             <div key={cert.name} className="bg-surface rounded-lg px-3 py-2">

@@ -1,4 +1,8 @@
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+
 export const WelcomeOutput = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-4">
       <pre className="text-lavender text-xs sm:text-sm leading-tight">
@@ -14,21 +18,21 @@ export const WelcomeOutput = () => {
       
       <div className="space-y-2">
         <p className="text-foreground">
-          <span className="text-subtext">{">"}</span> Welcome to my interactive portfolio!
+          <span className="text-subtext">{">"}</span> {t.welcomeMessage}
         </p>
         <p className="text-foreground">
-          <span className="text-subtext">{">"}</span> I'm{" "}
-          <span className="text-green font-semibold">John Doe</span>, a{" "}
-          <span className="text-mauve">Software Engineer</span>
+          <span className="text-subtext">{">"}</span> {t.welcomeIntro}{" "}
+          <span className="text-green font-semibold">{t.welcomeName}</span>, a{" "}
+          <span className="text-mauve">{t.welcomeRole}</span>
         </p>
         <p className="text-foreground">
-          <span className="text-subtext">{">"}</span> Type{" "}
-          <span className="text-yellow">help</span> to see available commands
+          <span className="text-subtext">{">"}</span> {t.welcomeHelp}{" "}
+          <span className="text-yellow">{t.welcomeHelpCommand}</span> {t.welcomeHelpSuffix}
         </p>
       </div>
       
       <div className="text-overlay text-sm pt-2">
-        <p>Last login: {new Date().toLocaleDateString()} at {new Date().toLocaleTimeString()}</p>
+        <p>{t.lastLogin} {new Date().toLocaleDateString()} {t.at} {new Date().toLocaleTimeString()}</p>
       </div>
     </div>
   );
