@@ -296,4 +296,70 @@
   .hover-glow:hover {
     box-shadow: 0 0 20px hsl(var(--ctp-lavender) / 0.2);
   }
+
+  /* Command output animations */
+  .command-enter {
+    animation: commandEnter 0.3s ease-out forwards;
+  }
+
+  @keyframes commandEnter {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .output-content {
+    animation: outputReveal 0.4s ease-out forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+  }
+
+  @keyframes outputReveal {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered children animation */
+  .stagger-item {
+    opacity: 0;
+    animation: staggerFade 0.3s ease-out forwards;
+  }
+
+  @keyframes staggerFade {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Terminal typing cursor animation */
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 18px;
+    background: hsl(var(--cursor));
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes cursorBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
 }
