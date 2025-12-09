@@ -33,6 +33,7 @@ export const InteractiveTerminal = () => {
     { id: 0, command: "welcome", content: <WelcomeOutput /> },
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [glitch, setGlitch] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
   const outputIdRef = useRef(1);
 
@@ -143,6 +144,10 @@ export const InteractiveTerminal = () => {
   const handleCommand = (cmd: string) => {
     const command = cmd.toLowerCase().trim();
     
+    // Trigger glitch effect
+    setGlitch(true);
+    setTimeout(() => setGlitch(false), 300);
+    
     // Update command history
     setCommandHistory((prev) => [...prev, cmd]);
 
@@ -170,7 +175,7 @@ export const InteractiveTerminal = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-4xl">
-        <TerminalWindow title="visitor@portfolio: ~">
+        <TerminalWindow title="visitor@portfolio: ~" glitch={glitch}>
           <div
             ref={terminalRef}
             className="max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-ctp-surface1 scrollbar-track-transparent"
