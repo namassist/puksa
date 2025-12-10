@@ -9,7 +9,9 @@ interface TerminalWindowProps {
 
 export const TerminalWindow = ({ title = "terminal", children, className = "", glitch = false }: TerminalWindowProps) => {
   return (
-    <div className={`terminal-window ${className}`}>
+    <div className={`terminal-window crt-effect ${className}`}>
+      <div className="crt-scanlines" />
+      <div className="crt-flicker" />
       <div className={`terminal-header ${glitch ? 'header-glitch' : ''}`}>
         <div className="flex gap-2">
           <span className={`terminal-dot terminal-dot-red ${glitch ? 'dot-flicker' : ''}`} />
