@@ -3,7 +3,7 @@ export type Language = "en" | "id";
 export const translations = {
   en: {
     // Welcome
-    welcomeTitle: "HELLO",
+    welcomeTitle: "KEPALA KOALA",
     welcomeMessage: "Welcome to my interactive portfolio!",
     welcomeIntro: "I'm",
     welcomeName: "John Doe",
