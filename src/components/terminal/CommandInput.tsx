@@ -56,17 +56,22 @@ export const CommandInput = ({ onCommand, history }: CommandInputProps) => {
       <span className="text-subtext">:</span>
       <span className="text-mauve">~</span>
       <span className="text-foreground ml-1">$</span>
-      <input
-        ref={inputRef}
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-        className="flex-1 bg-transparent outline-none text-foreground ml-2 caret-ctp-rosewater"
-        spellCheck={false}
-        autoComplete="off"
-      />
-      <span className="w-2 h-5 bg-ctp-rosewater cursor-blink" />
+      <div className="flex-1 relative ml-2">
+        <input
+          ref={inputRef}
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className="w-full bg-transparent outline-none text-foreground caret-transparent"
+          spellCheck={false}
+          autoComplete="off"
+        />
+        <span 
+          className="absolute top-0 h-5 w-2 bg-ctp-rosewater cursor-blink pointer-events-none"
+          style={{ left: `${input.length * 0.6}em` }}
+        />
+      </div>
     </div>
   );
 };
