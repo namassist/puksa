@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, ReactNode } from "react";
 import { TerminalWindow } from "./TerminalWindow";
 import { CommandInput } from "./CommandInput";
 import { CommandOutput } from "./CommandOutput";
+import { ParticleEffect } from "./ParticleEffect";
 import { WelcomeOutput } from "./outputs/WelcomeOutput";
 import { HelpOutput } from "./outputs/HelpOutput";
 import { AboutOutput } from "./outputs/AboutOutput";
@@ -34,6 +35,7 @@ export const InteractiveTerminal = () => {
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [glitch, setGlitch] = useState(false);
+  const [showParticles, setShowParticles] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
   const outputIdRef = useRef(1);
 
@@ -148,6 +150,10 @@ export const InteractiveTerminal = () => {
     setGlitch(true);
     setTimeout(() => setGlitch(false), 300);
     
+    // Trigger particle effect
+    setShowParticles(true);
+    setTimeout(() => setShowParticles(false), 100);
+    
     // Update command history
     setCommandHistory((prev) => [...prev, cmd]);
 
@@ -174,7 +180,8 @@ export const InteractiveTerminal = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-4xl relative">
+        <ParticleEffect trigger={showParticles} originX={50} originY={95} />
         <TerminalWindow title="visitor@portfolio: ~" glitch={glitch}>
           <div
             ref={terminalRef}
