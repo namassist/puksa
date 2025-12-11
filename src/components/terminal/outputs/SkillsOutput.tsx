@@ -1,14 +1,5 @@
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const ProgressBar = ({ level, color }: { level: number; color: string }) => (
-  <div className="w-full bg-ctp-surface1 rounded-full h-2">
-    <div
-      className={`h-2 rounded-full ${color}`}
-      style={{ width: `${level}%` }}
-    />
-  </div>
-);
-
 export const SkillsOutput = () => {
   const { t } = useLanguage();
 
@@ -16,68 +7,37 @@ export const SkillsOutput = () => {
     { 
       category: t.categories.languages, 
       color: "text-blue",
-      bgColor: "bg-blue",
-      items: [
-        { name: "TypeScript", level: 95 },
-        { name: "JavaScript", level: 95 },
-        { name: "Python", level: 85 },
-        { name: "Go", level: 75 },
-        { name: "Rust", level: 60 },
-        { name: "Java", level: 70 },
-      ]
+      bgColor: "bg-blue/20",
+      borderColor: "border-blue/50",
+      items: ["TypeScript", "JavaScript", "Python", "Go", "Rust", "Java", "C++", "SQL"]
     },
     { 
       category: t.categories.frontend, 
       color: "text-green",
-      bgColor: "bg-green",
-      items: [
-        { name: "React", level: 95 },
-        { name: "Next.js", level: 90 },
-        { name: "Vue.js", level: 80 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "Framer Motion", level: 85 },
-        { name: "Three.js", level: 65 },
-      ]
+      bgColor: "bg-green/20",
+      borderColor: "border-green/50",
+      items: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Framer Motion", "Three.js", "SCSS", "HTML5"]
     },
     { 
       category: t.categories.backend, 
       color: "text-mauve",
-      bgColor: "bg-mauve",
-      items: [
-        { name: "Node.js", level: 90 },
-        { name: "Express", level: 90 },
-        { name: "FastAPI", level: 80 },
-        { name: "PostgreSQL", level: 85 },
-        { name: "MongoDB", level: 80 },
-        { name: "Redis", level: 75 },
-        { name: "GraphQL", level: 80 },
-      ]
+      bgColor: "bg-mauve/20",
+      borderColor: "border-mauve/50",
+      items: ["Node.js", "Express", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "GraphQL", "REST API"]
     },
     { 
       category: t.categories.devops, 
       color: "text-peach",
-      bgColor: "bg-peach",
-      items: [
-        { name: "Docker", level: 90 },
-        { name: "AWS", level: 85 },
-        { name: "CI/CD", level: 85 },
-        { name: "Kubernetes", level: 75 },
-        { name: "Terraform", level: 70 },
-        { name: "GitHub Actions", level: 90 },
-      ]
+      bgColor: "bg-peach/20",
+      borderColor: "border-peach/50",
+      items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform", "GitHub Actions", "Nginx", "Linux"]
     },
     { 
       category: t.categories.tools, 
       color: "text-pink",
-      bgColor: "bg-pink",
-      items: [
-        { name: "Git", level: 95 },
-        { name: "Linux", level: 85 },
-        { name: "Vim/Neovim", level: 80 },
-        { name: "VS Code", level: 95 },
-        { name: "Figma", level: 70 },
-        { name: "Postman", level: 85 },
-      ]
+      bgColor: "bg-pink/20",
+      borderColor: "border-pink/50",
+      items: ["Git", "Vim/Neovim", "VS Code", "Figma", "Postman", "Jira", "Notion", "Slack"]
     },
   ];
 
@@ -101,22 +61,21 @@ export const SkillsOutput = () => {
     <div className="space-y-4">
       <p className="text-lavender">{t.skillsTitle}</p>
       
-      {/* Technical Skills with Progress Bars */}
+      {/* Technical Skills as Tags */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {skillGroups.map((group) => (
           <div key={group.category} className="bg-surface rounded-lg p-4">
             <p className={`${group.color} font-semibold mb-3`}>
               {group.category}:
             </p>
-            <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
               {group.items.map((skill) => (
-                <div key={skill.name} className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-foreground">{skill.name}</span>
-                    <span className="text-subtext">{skill.level}%</span>
-                  </div>
-                  <ProgressBar level={skill.level} color={group.bgColor} />
-                </div>
+                <span 
+                  key={skill} 
+                  className={`${group.bgColor} ${group.borderColor} border px-3 py-1 rounded-full text-sm text-foreground`}
+                >
+                  {skill}
+                </span>
               ))}
             </div>
           </div>
