@@ -16,6 +16,9 @@ import { WhoamiOutput } from "./outputs/WhoamiOutput";
 import { LsOutput } from "./outputs/LsOutput";
 import { ErrorOutput } from "./outputs/ErrorOutput";
 import { NeofetchOutput } from "./outputs/NeofetchOutput";
+import { MatrixOutput } from "./outputs/MatrixOutput";
+import { NyanOutput } from "./outputs/NyanOutput";
+import { PartyOutput } from "./outputs/PartyOutput";
 import { ThemeOutput } from "./outputs/ThemeOutput";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useTheme, CatppuccinTheme } from "@/lib/theme/ThemeContext";
@@ -113,6 +116,15 @@ export const InteractiveTerminal = () => {
         return <LsOutput />;
       case "neofetch":
         return <NeofetchOutput />;
+      // Easter eggs
+      case "matrix":
+        return <MatrixOutput />;
+      case "nyan":
+      case "nyancat":
+        return <NyanOutput />;
+      case "party":
+      case "celebrate":
+        return <PartyOutput />;
       case "resume":
       case "cv":
         return (
