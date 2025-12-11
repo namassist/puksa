@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect, ReactNode } from "react";
+import { useState, useRef, useEffect, ReactNode, useCallback } from "react";
 import { TerminalWindow } from "./TerminalWindow";
 import { CommandInput } from "./CommandInput";
 import { CommandOutput } from "./CommandOutput";
 import { ParticleEffect } from "./ParticleEffect";
+import { IntroAnimation } from "./IntroAnimation";
 import { WelcomeOutput } from "./outputs/WelcomeOutput";
 import { HelpOutput } from "./outputs/HelpOutput";
 import { AboutOutput } from "./outputs/AboutOutput";
@@ -30,17 +31,21 @@ const validThemes: CatppuccinTheme[] = ["mocha", "latte", "frappe", "macchiato"]
 export const InteractiveTerminal = () => {
   const { t, language, setLanguage } = useLanguage();
   const { theme, setTheme } = useTheme();
-  const [outputs, setOutputs] = useState<OutputEntry[]>([
-    { id: 0, command: "welcome", content: <WelcomeOutput /> },
-  ]);
+  const [introComplete, setIntroComplete] = useState(false);
+  const [outputs, setOutputs] = useState<OutputEntry[]>([]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [glitch, setGlitch] = useState(false);
   const [showParticles, setShowParticles] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
-  const outputIdRef = useRef(1);
+  const outputIdRef = useRef(0);
+
+  const handleIntroComplete = useCallback(() => {
+    setOutputs([{ id: outputIdRef.current++, command: "welcome", content: <WelcomeOutput /> }]);
+    setCommandHistory(["welcome"]);
+    setIntroComplete(true);
+  }, []);
 
   useEffect(() => {
-    // Scroll to bottom when new output is added
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
@@ -183,23 +188,29 @@ export const InteractiveTerminal = () => {
       <div className="w-full max-w-4xl relative">
         <ParticleEffect trigger={showParticles} originX={50} originY={95} />
         <TerminalWindow title="visitor@portfolio: ~" glitch={glitch}>
-          <div
-            ref={terminalRef}
-            className="max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-ctp-surface1 scrollbar-track-transparent"
-          >
-            {outputs.map((entry) => (
-              <CommandOutput key={entry.id} command={entry.command}>
-                {entry.content}
-              </CommandOutput>
-            ))}
-          </div>
-          
-          <div className="mt-4 pt-4 border-t border-ctp-surface0">
-            <CommandInput 
-              onCommand={handleCommand} 
-              history={commandHistory}
-            />
-          </div>
+          {!introComplete ? (
+            <IntroAnimation onComplete={handleIntroComplete} />
+          ) : (
+            <>
+              <div
+                ref={terminalRef}
+                className="max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-ctp-surface1 scrollbar-track-transparent"
+              >
+                {outputs.map((entry) => (
+                  <CommandOutput key={entry.id} command={entry.command}>
+                    {entry.content}
+                  </CommandOutput>
+                ))}
+              </div>
+              
+              <div className="mt-4 pt-4 border-t border-ctp-surface0">
+                <CommandInput 
+                  onCommand={handleCommand} 
+                  history={commandHistory}
+                />
+              </div>
+            </>
+          )}
         </TerminalWindow>
         
         <footer className="mt-6 text-center">
