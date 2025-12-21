@@ -10,6 +10,7 @@ import { AboutOutput } from "./outputs/AboutOutput";
 import { SkillsOutput } from "./outputs/SkillsOutput";
 import { ExperienceOutput } from "./outputs/ExperienceOutput";
 import { ProjectsOutput } from "./outputs/ProjectsOutput";
+import { PortfolioOutput } from "./outputs/PortfolioOutput";
 import { ContactOutput } from "./outputs/ContactOutput";
 import { SocialOutput } from "./outputs/SocialOutput";
 import { WhoamiOutput } from "./outputs/WhoamiOutput";
@@ -102,6 +103,10 @@ export const InteractiveTerminal = () => {
       case "projects":
       case "ls projects":
         return <ProjectsOutput />;
+      case "portfolio":
+      case "gallery":
+      case "showcase":
+        return <PortfolioOutput />;
       case "contact":
       case "cat contact.txt":
         return <ContactOutput />;
