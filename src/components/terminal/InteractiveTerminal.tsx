@@ -21,6 +21,7 @@ import { MatrixOutput } from "./outputs/MatrixOutput";
 import { NyanOutput } from "./outputs/NyanOutput";
 import { PartyOutput } from "./outputs/PartyOutput";
 import { ThemeOutput } from "./outputs/ThemeOutput";
+import { GgmuOutput } from "./outputs/GgmuOutput";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useTheme, CatppuccinTheme } from "@/lib/theme/ThemeContext";
 
@@ -130,6 +131,10 @@ export const InteractiveTerminal = () => {
       case "party":
       case "celebrate":
         return <PartyOutput />;
+      case "ggmu":
+      case "manutd":
+      case "united":
+        return <GgmuOutput />;
       case "resume":
       case "cv":
         return (
