@@ -3,51 +3,39 @@ import { useState } from "react";
 
 // Tech icons mapping using simple text/emoji representations
 const techIcons: Record<string, string> = {
-  // Languages
-  "TypeScript": "TS",
-  "JavaScript": "JS",
-  "Python": "🐍",
-  "Go": "Go",
-  "Rust": "🦀",
-  "Java": "☕",
-  "C++": "C+",
-  "SQL": "📊",
   // Frontend
+  "HTML5": "🌐",
+  "SCSS": "💅",
+  "Tailwind": "🎨",
+  "Bootstrap": "🅱️",
+  "Shadcn": "🎯",
   "React": "⚛️",
   "Next.js": "▲",
-  "Vue.js": "💚",
-  "Tailwind CSS": "🎨",
+  "Flutter": "🦋",
   "Framer Motion": "🎬",
-  "Three.js": "🎲",
-  "SCSS": "💅",
-  "HTML5": "🌐",
   // Backend
   "Node.js": "💚",
   "Express": "🚂",
-  "FastAPI": "⚡",
+  "Bun": "🥟",
+  "Elysia": "⚡",
+  "Laravel": "🔴",
+  "Idempiere": "🏢",
   "PostgreSQL": "🐘",
-  "MongoDB": "🍃",
-  "Redis": "🔴",
-  "GraphQL": "◈",
   "REST API": "🔌",
-  // DevOps
-  "Docker": "🐳",
-  "AWS": "☁️",
-  "CI/CD": "🔄",
-  "Kubernetes": "☸️",
-  "Terraform": "🏗️",
-  "GitHub Actions": "🤖",
-  "Nginx": "🌊",
-  "Linux": "🐧",
   // Tools
-  "Git": "📦",
-  "Vim/Neovim": "📝",
+  "GitLab": "🦊",
+  "Github": "🐙",
   "VS Code": "💻",
   "Figma": "🎨",
   "Postman": "📮",
-  "Jira": "📋",
-  "Notion": "📓",
-  "Slack": "💬",
+  "DBeaver": "🦫",
+  "Burp Suite": "🔒",
+  // State Management
+  "Riverpod": "🌊",
+  "BLoC": "🧱",
+  "TanStack Query": "📡",
+  "Redux Toolkit": "🔧",
+  "React Context": "🔄",
 };
 
 export const SkillsOutput = () => {
@@ -56,20 +44,12 @@ export const SkillsOutput = () => {
 
   const skillGroups = [
     { 
-      category: t.categories.languages, 
-      id: "languages",
-      color: "text-blue",
-      bgColor: "bg-blue/20",
-      borderColor: "border-blue/50",
-      items: ["TypeScript", "JavaScript", "Python", "Go", "Rust", "Java", "C++", "SQL"]
-    },
-    { 
       category: t.categories.frontend, 
       id: "frontend",
       color: "text-green",
       bgColor: "bg-green/20",
       borderColor: "border-green/50",
-      items: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Framer Motion", "Three.js", "SCSS", "HTML5"]
+      items: ["HTML5", "SCSS", "Tailwind", "Bootstrap", "Shadcn", "React", "Next.js", "Flutter", "Framer Motion"]
     },
     { 
       category: t.categories.backend, 
@@ -77,15 +57,7 @@ export const SkillsOutput = () => {
       color: "text-mauve",
       bgColor: "bg-mauve/20",
       borderColor: "border-mauve/50",
-      items: ["Node.js", "Express", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "GraphQL", "REST API"]
-    },
-    { 
-      category: t.categories.devops, 
-      id: "devops",
-      color: "text-peach",
-      bgColor: "bg-peach/20",
-      borderColor: "border-peach/50",
-      items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform", "GitHub Actions", "Nginx", "Linux"]
+      items: ["Node.js", "Express", "Bun", "Elysia", "Laravel", "Idempiere", "PostgreSQL", "REST API"]
     },
     { 
       category: t.categories.tools, 
@@ -93,7 +65,15 @@ export const SkillsOutput = () => {
       color: "text-pink",
       bgColor: "bg-pink/20",
       borderColor: "border-pink/50",
-      items: ["Git", "Vim/Neovim", "VS Code", "Figma", "Postman", "Jira", "Notion", "Slack"]
+      items: ["GitLab", "Github", "VS Code", "Figma", "Postman", "DBeaver", "Burp Suite"]
+    },
+    { 
+      category: "State Management", 
+      id: "state",
+      color: "text-peach",
+      bgColor: "bg-peach/20",
+      borderColor: "border-peach/50",
+      items: ["Riverpod", "BLoC", "TanStack Query", "Redux Toolkit", "React Context"]
     },
   ];
 
@@ -107,10 +87,45 @@ export const SkillsOutput = () => {
   ];
 
   const certifications = [
-    { name: "AWS Solutions Architect", issuer: "Amazon", year: "2023", color: "text-peach" },
-    { name: "Google Cloud Professional", issuer: "Google", year: "2023", color: "text-blue" },
-    { name: "Kubernetes Administrator (CKA)", issuer: "CNCF", year: "2022", color: "text-sky" },
-    { name: "MongoDB Developer", issuer: "MongoDB", year: "2022", color: "text-green" },
+    { 
+      name: "Software Engineer Role", 
+      issuer: "HackerRank", 
+      year: "2024",
+      date: "26 August",
+      color: "text-peach",
+      url: "https://www.hackerrank.com/certificates/b7b89ad7e8d1"
+    },
+    { 
+      name: "Frontend Developer Role (React)", 
+      issuer: "HackerRank", 
+      year: "2024",
+      date: "13 August",
+      color: "text-blue",
+      url: "https://www.hackerrank.com/certificates/7efa24004355"
+    },
+    { 
+      name: "MTCNA", 
+      issuer: "Mikrotik", 
+      year: "2024",
+      date: "20 May",
+      color: "text-sky"
+    },
+    { 
+      name: "Learn Web Application Fundamentals with React", 
+      issuer: "Dicoding", 
+      year: "2023",
+      date: "15 December",
+      color: "text-green",
+      url: "https://www.dicoding.com/certificates/2VX3OYNYVZYQ"
+    },
+    { 
+      name: "React & React Native for Frontend Developer", 
+      issuer: "Hacktiv8", 
+      year: "2023",
+      date: "30 June",
+      color: "text-mauve",
+      url: "https://drive.google.com/file/d/1_kAhjFulL6_fB4TtoVyWNgAGsdZYvbO1/view"
+    },
   ];
 
   const filteredGroups = activeFilter 
@@ -196,13 +211,22 @@ export const SkillsOutput = () => {
         <p className="text-lavender font-semibold mb-3">// Certifications</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {certifications.map((cert) => (
-            <div key={cert.name} className="bg-ctp-surface1 rounded-lg px-3 py-2 hover:scale-[1.02] transition-transform duration-200">
-              <div className={`${cert.color} font-medium`}>📜 {cert.name}</div>
+            <a 
+              key={cert.name} 
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`bg-ctp-surface1 rounded-lg px-3 py-2 hover:scale-[1.02] transition-transform duration-200 block ${cert.url ? 'cursor-pointer hover:ring-1 ring-lavender/30' : 'cursor-default'}`}
+            >
+              <div className={`${cert.color} font-medium flex items-center gap-2`}>
+                📜 {cert.name}
+                {cert.url && <span className="text-xs text-subtext">↗</span>}
+              </div>
               <div className="flex justify-between text-sm">
                 <span className="text-subtext">{cert.issuer}</span>
-                <span className="text-overlay">{cert.year}</span>
+                <span className="text-overlay">{cert.date} {cert.year}</span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
