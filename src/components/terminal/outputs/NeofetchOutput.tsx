@@ -25,7 +25,7 @@ export const NeofetchOutput = () => {
     { label: t.neofetch.terminal, value: "Interactive Portfolio", color: "text-blue" },
   ];
 
-  const colors = ["bg-red-500", "bg-orange-500", "bg-yellow-500", "bg-green-500", "bg-blue-500", "bg-violet-500", "bg-pink-500", "bg-teal-500"];
+  const colors = ["bg-red", "bg-peach", "bg-yellow", "bg-green", "bg-teal", "bg-blue", "bg-lavender", "bg-mauve"];
 
   return (
     <div className="font-mono text-sm">
