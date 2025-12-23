@@ -26,10 +26,10 @@ export const SocialOutput = () => {
   ];
 
   const secondaryLinks = [
-    { icon: Mail, label: "Email", value: "chairulanmm@gmail.com", href: "mailto:chairulanmm@gmail.com", color: "text-peach" },
-    { icon: Globe, label: "Website", value: "chairulanammaulid.in", href: "https://chairulanammaulid.in", color: "text-green" },
-    { icon: Instagram, label: "Instagram", value: "@chairulssr", href: "https://instagram.com/chairulssr", color: "text-pink" },
-    { icon: MessageCircle, label: "Discord", value: "namassist", href: "https://discord.com", color: "text-lavender" },
+    { icon: Mail, label: "Email", value: "chairulanmm@gmail.com", href: "mailto:chairulanmm@gmail.com", color: "text-peach", bgColor: "from-orange-500 to-orange-700" },
+    { icon: Globe, label: "Website", value: "chairulanammaulid.in", href: "https://chairulanammaulid.in", color: "text-green", bgColor: "from-green-500 to-green-700" },
+    { icon: Instagram, label: "Instagram", value: "@chairulssr", href: "https://instagram.com/chairulssr", color: "text-pink", bgColor: "from-pink-500 to-pink-700" },
+    { icon: MessageCircle, label: "Discord", value: "namassist", href: "https://discord.com", color: "text-lavender", bgColor: "from-indigo-500 to-indigo-700" },
   ];
 
   return (
@@ -99,21 +99,25 @@ export const SocialOutput = () => {
       </div>
 
       {/* Secondary Links Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {secondaryLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 bg-surface/30 rounded-lg p-3 hover:bg-surface/60 transition-all duration-200 group border border-transparent hover:border-surface"
+            className="group relative overflow-hidden rounded-xl bg-surface/50 border border-surface hover:border-blue/50 transition-all duration-300"
           >
-            <div className={`w-8 h-8 rounded-lg ${link.color} bg-current/10 flex items-center justify-center`}>
-              <link.icon className={`${link.color} group-hover:scale-110 transition-transform`} size={16} />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <span className="text-subtext text-xs">{link.label}</span>
-              <span className={`${link.color} text-sm truncate hover:underline`}>{link.value}</span>
+            <div className={`absolute inset-0 bg-gradient-to-r ${link.bgColor} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+            <div className="relative p-4 flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${link.bgColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <link.icon className="text-white" size={20} />
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-subtext text-xs">{link.label}</span>
+                <span className={`${link.color} text-sm truncate group-hover:underline font-medium`}>{link.value}</span>
+              </div>
+              <ExternalLink className="ml-auto text-subtext group-hover:text-foreground transition-colors" size={16} />
             </div>
           </a>
         ))}
