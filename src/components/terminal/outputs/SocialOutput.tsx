@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Globe, Youtube, Instagram, MessageCircle, ExternalLink, Users, Star, GitFork } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, Instagram, MessageCircle, ExternalLink, Users, GitFork, Star } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const SocialOutput = () => {
@@ -17,29 +17,19 @@ export const SocialOutput = () => {
     { 
       icon: Linkedin, 
       label: "LinkedIn", 
-      value: "linkedin.com/in/johndoe", 
-      href: "https://linkedin.com", 
+      value: "linkedin.com/in/chairulanmm", 
+      href: "https://www.linkedin.com/in/chairulanmm/", 
       color: "text-blue",
       bgColor: "from-blue-600 to-blue-800",
       stats: { connections: "500+" }
     },
-    { 
-      icon: Twitter, 
-      label: "Twitter/X", 
-      value: "@johndoe_dev", 
-      href: "https://twitter.com", 
-      color: "text-sky",
-      bgColor: "from-sky-500 to-sky-700",
-      stats: { followers: "1K+" }
-    },
   ];
 
   const secondaryLinks = [
-    { icon: Mail, label: "Email", value: "hello@johndoe.dev", href: "mailto:hello@johndoe.dev", color: "text-peach" },
-    { icon: Globe, label: "Website", value: "johndoe.dev", href: "https://johndoe.dev", color: "text-green" },
-    { icon: Youtube, label: "YouTube", value: "@johndoe_tech", href: "https://youtube.com", color: "text-red" },
-    { icon: Instagram, label: "Instagram", value: "@johndoe.dev", href: "https://instagram.com", color: "text-pink" },
-    { icon: MessageCircle, label: "Discord", value: "johndoe#1234", href: "https://discord.com", color: "text-lavender" },
+    { icon: Mail, label: "Email", value: "chairulanmm@gmail.com", href: "mailto:chairulanmm@gmail.com", color: "text-peach" },
+    { icon: Globe, label: "Website", value: "chairulanammaulid.in", href: "https://chairulanammaulid.in", color: "text-green" },
+    { icon: Instagram, label: "Instagram", value: "@chairulssr", href: "https://instagram.com/chairulssr", color: "text-pink" },
+    { icon: MessageCircle, label: "Discord", value: "namassist", href: "https://discord.com", color: "text-lavender" },
   ];
 
   return (
@@ -145,13 +135,13 @@ export const SocialOutput = () => {
       {/* Quick Copy Section */}
       <div className="flex flex-wrap gap-2">
         <span className="px-3 py-1.5 bg-surface/50 text-subtext rounded-full text-xs font-mono hover:bg-surface transition-colors cursor-pointer">
-          📧 hello@johndoe.dev
+          📧 chairulanmm@gmail.com
         </span>
         <span className="px-3 py-1.5 bg-surface/50 text-subtext rounded-full text-xs font-mono hover:bg-surface transition-colors cursor-pointer">
           🐙 @namassist
         </span>
         <span className="px-3 py-1.5 bg-surface/50 text-subtext rounded-full text-xs font-mono hover:bg-surface transition-colors cursor-pointer">
-          💬 Discord: johndoe#1234
+          💬 Discord: namassist
         </span>
       </div>
     </div>
