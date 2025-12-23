@@ -10,8 +10,8 @@ export const SocialOutput = () => {
       label: "GitHub", 
       value: "github.com/namassist", 
       href: "https://github.com/namassist", 
-      color: "text-foreground",
-      bgColor: "from-gray-700 to-gray-900",
+      color: "text-ctp-text",
+      bgColor: "from-ctp-surface2 to-ctp-surface0",
       stats: { followers: "50+", repos: "30+" }
     },
     { 
@@ -19,17 +19,17 @@ export const SocialOutput = () => {
       label: "LinkedIn", 
       value: "linkedin.com/in/chairulanmm", 
       href: "https://www.linkedin.com/in/chairulanmm/", 
-      color: "text-blue",
-      bgColor: "from-blue-600 to-blue-800",
+      color: "text-ctp-blue",
+      bgColor: "from-ctp-blue to-ctp-sapphire",
       stats: { connections: "500+" }
     },
   ];
 
   const secondaryLinks = [
-    { icon: Mail, label: "Email", value: "chairulanmm@gmail.com", href: "mailto:chairulanmm@gmail.com", color: "text-peach", bgColor: "from-orange-500 to-orange-700" },
-    { icon: Globe, label: "Website", value: "chairulanammaulid.in", href: "https://chairulanammaulid.in", color: "text-green", bgColor: "from-green-500 to-green-700" },
-    { icon: Instagram, label: "Instagram", value: "@chairulssr", href: "https://instagram.com/chairulssr", color: "text-pink", bgColor: "from-pink-500 to-pink-700" },
-    { icon: MessageCircle, label: "Discord", value: "namassist", href: "https://discord.com", color: "text-lavender", bgColor: "from-indigo-500 to-indigo-700" },
+    { icon: Mail, label: "Email", value: "chairulanmm@gmail.com", href: "mailto:chairulanmm@gmail.com", color: "text-ctp-peach", bgColor: "from-ctp-peach to-ctp-maroon" },
+    { icon: Globe, label: "Website", value: "chairulanammaulid.in", href: "https://chairulanammaulid.in", color: "text-ctp-green", bgColor: "from-ctp-green to-ctp-teal" },
+    { icon: Instagram, label: "Instagram", value: "@chairulssr", href: "https://instagram.com/chairulssr", color: "text-ctp-pink", bgColor: "from-ctp-pink to-ctp-mauve" },
+    { icon: MessageCircle, label: "Discord", value: "namassist", href: "https://discord.com", color: "text-ctp-lavender", bgColor: "from-ctp-lavender to-ctp-blue" },
   ];
 
   return (
