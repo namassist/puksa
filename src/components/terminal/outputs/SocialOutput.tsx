@@ -1,45 +1,153 @@
+import { Github, Linkedin, Mail, Globe, Instagram, MessageCircle, ExternalLink, Users, GitFork, Star } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const SocialOutput = () => {
   const { t } = useLanguage();
 
-  // Catppuccin Mocha colors
-  const colors = {
-    green: "#a6e3a1",
-    blue: "#89b4fa",
-    lavender: "#b4befe",
-    peach: "#fab387",
-    pink: "#f5c2e7",
-    mauve: "#cba6f7",
-    teal: "#94e2d5",
-    yellow: "#f9e2af",
-    subtext: "#a6adc8",
-    text: "#cdd6f4",
-  };
+  const primaryLinks = [
+    { 
+      icon: Github, 
+      label: "GitHub", 
+      value: "github.com/namassist", 
+      href: "https://github.com/namassist", 
+      color: "text-foreground",
+      bgColor: "from-gray-700 to-gray-900",
+      stats: { followers: "50+", repos: "30+" }
+    },
+    { 
+      icon: Linkedin, 
+      label: "LinkedIn", 
+      value: "linkedin.com/in/chairulanmm", 
+      href: "https://www.linkedin.com/in/chairulanmm/", 
+      color: "text-blue",
+      bgColor: "from-blue-600 to-blue-800",
+      stats: { connections: "500+" }
+    },
+  ];
 
-  const links = [
-    { label: "github", value: "github.com/namassist", color: colors.text },
-    { label: "linkedin", value: "linkedin.com/in/chairulanmm", color: colors.blue },
-    { label: "email", value: "chairulanmm@gmail.com", color: colors.peach },
-    { label: "website", value: "chairulanammaulid.in", color: colors.green },
-    { label: "instagram", value: "@chairulssr", color: colors.pink },
-    { label: "discord", value: "namassist", color: colors.lavender },
+  const secondaryLinks = [
+    { icon: Mail, label: "Email", value: "chairulanmm@gmail.com", href: "mailto:chairulanmm@gmail.com", color: "text-peach", bgColor: "from-orange-500 to-orange-700" },
+    { icon: Globe, label: "Website", value: "chairulanammaulid.in", href: "https://chairulanammaulid.in", color: "text-green", bgColor: "from-green-500 to-green-700" },
+    { icon: Instagram, label: "Instagram", value: "@chairulssr", href: "https://instagram.com/chairulssr", color: "text-pink", bgColor: "from-pink-500 to-pink-700" },
+    { icon: MessageCircle, label: "Discord", value: "namassist", href: "https://discord.com", color: "text-lavender", bgColor: "from-indigo-500 to-indigo-700" },
   ];
 
   return (
-    <div className="font-mono text-sm space-y-1">
-      <p style={{ color: colors.lavender }}>{t.socialTitle}</p>
-      <p style={{ color: colors.subtext }}>─────────────────</p>
-      {links.map((link) => (
-        <p key={link.label}>
-          <span style={{ color: colors.mauve }}>{link.label}</span>
-          <span style={{ color: colors.subtext }}>: </span>
-          <span style={{ color: link.color }}>{link.value}</span>
-        </p>
-      ))}
-      <p className="mt-2" style={{ color: colors.subtext }}>
-        <span style={{ color: colors.yellow }}>tip</span>: click 'contact' for more options
-      </p>
+    <div className="space-y-6">
+      {/* Header with ASCII art */}
+      <div className="space-y-2">
+        <pre className="text-lavender text-xs leading-tight font-mono hidden sm:block">
+{`   _____ ____  _____ ___    __   
+  / ___// __ \\/ ___//   |  / /   
+  \\__ \\/ / / / /   / /| | / /    
+ ___/ / /_/ / /___/ ___ |/ /___  
+/____/\\____/\\____/_/  |_/_____/  `}
+        </pre>
+        <p className="text-lavender text-lg font-bold">{t.socialTitle}</p>
+        <p className="text-subtext text-sm">Connect with me across the web</p>
+      </div>
+
+      {/* Primary Social Cards */}
+      <div className="grid grid-cols-1 gap-3">
+        {primaryLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden rounded-xl bg-surface/50 border border-surface hover:border-blue/50 transition-all duration-300"
+          >
+            <div className={`absolute inset-0 bg-gradient-to-r ${link.bgColor} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+            <div className="relative p-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${link.bgColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <link.icon className="text-white" size={24} />
+                </div>
+                <div>
+                  <p className={`${link.color} font-bold text-lg group-hover:underline`}>{link.label}</p>
+                  <p className="text-subtext text-sm">{link.value}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                {link.stats && (
+                  <div className="hidden sm:flex items-center gap-3 text-xs">
+                    {link.stats.followers && (
+                      <span className="flex items-center gap-1 text-subtext">
+                        <Users size={14} />
+                        {link.stats.followers}
+                      </span>
+                    )}
+                    {link.stats.repos && (
+                      <span className="flex items-center gap-1 text-subtext">
+                        <GitFork size={14} />
+                        {link.stats.repos}
+                      </span>
+                    )}
+                    {link.stats.connections && (
+                      <span className="flex items-center gap-1 text-subtext">
+                        <Users size={14} />
+                        {link.stats.connections}
+                      </span>
+                    )}
+                  </div>
+                )}
+                <ExternalLink className="text-subtext group-hover:text-foreground transition-colors" size={18} />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Secondary Links Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {secondaryLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden rounded-xl bg-surface/50 border border-surface hover:border-blue/50 transition-all duration-300"
+          >
+            <div className={`absolute inset-0 bg-gradient-to-r ${link.bgColor} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+            <div className="relative p-4 flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${link.bgColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <link.icon className="text-white" size={20} />
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-subtext text-xs">{link.label}</span>
+                <span className={`${link.color} text-sm truncate group-hover:underline font-medium`}>{link.value}</span>
+              </div>
+              <ExternalLink className="ml-auto text-subtext group-hover:text-foreground transition-colors" size={16} />
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Call to Action */}
+      <div className="bg-gradient-to-r from-blue/10 via-lavender/10 to-pink/10 rounded-xl p-4 border border-lavender/20">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-lavender/20 flex items-center justify-center animate-pulse">
+            <Star className="text-lavender" size={20} />
+          </div>
+          <div>
+            <p className="text-foreground font-medium">Let's Connect!</p>
+            <p className="text-subtext text-sm">Always open to interesting conversations and collaborations</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Copy Section */}
+      <div className="flex flex-wrap gap-2">
+        <span className="px-3 py-1.5 bg-surface/50 text-subtext rounded-full text-xs font-mono hover:bg-surface transition-colors cursor-pointer">
+          📧 chairulanmm@gmail.com
+        </span>
+        <span className="px-3 py-1.5 bg-surface/50 text-subtext rounded-full text-xs font-mono hover:bg-surface transition-colors cursor-pointer">
+          🐙 @namassist
+        </span>
+        <span className="px-3 py-1.5 bg-surface/50 text-subtext rounded-full text-xs font-mono hover:bg-surface transition-colors cursor-pointer">
+          💬 Discord: namassist
+        </span>
+      </div>
     </div>
   );
 };
