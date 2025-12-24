@@ -104,7 +104,7 @@ export const WhoamiOutput = () => {
   }, [glitch]);
 
   const getStatBar = (value: number, max: number = 100) => {
-    const filled = Math.min(10, Math.max(0, Math.floor((value / max) * 10)));
+    const filled = Math.floor((value / max) * 10);
     return "█".repeat(filled) + "░".repeat(10 - filled);
   };
 
