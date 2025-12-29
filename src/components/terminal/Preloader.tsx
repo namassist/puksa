@@ -2,15 +2,20 @@ import { useState, useEffect } from "react";
 
 const bootSequence = [
   { text: "Initializing system...", delay: 0 },
-  { text: "[OK] Loading kernel modules", delay: 800 },
-  { text: "[OK] Mounting filesystems", delay: 1500 },
-  { text: "[OK] Starting network services", delay: 2200 },
-  { text: "[OK] Configuring environment", delay: 2900 },
-  { text: "[OK] Loading user profile", delay: 3600 },
-  { text: "[OK] Establishing secure connection", delay: 4300 },
-  { text: "[OK] Preparing workspace", delay: 5000 },
-  { text: "", delay: 5700 },
-  { text: "Welcome to terminal.sh", delay: 6200 },
+  { text: "[OK] Loading kernel modules", delay: 600 },
+  { text: "[OK] Mounting filesystems", delay: 1100 },
+  { text: "[OK] Starting network services", delay: 1600 },
+  { text: "[OK] Checking system integrity", delay: 2100 },
+  { text: "[OK] Loading security protocols", delay: 2600 },
+  { text: "[OK] Configuring environment", delay: 3100 },
+  { text: "[OK] Initializing display server", delay: 3600 },
+  { text: "[OK] Loading user profile", delay: 4100 },
+  { text: "[OK] Syncing remote data", delay: 4600 },
+  { text: "[OK] Establishing secure connection", delay: 5100 },
+  { text: "[OK] Preparing workspace", delay: 5600 },
+  { text: "[OK] Starting terminal session", delay: 6100 },
+  { text: "", delay: 6600 },
+  { text: "Welcome to terminal.sh", delay: 7100 },
 ];
 
 interface PreloaderProps {
@@ -34,13 +39,13 @@ export const Preloader = ({ onComplete }: PreloaderProps) => {
     // Start fade out
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 6800);
+    }, 7700);
     timers.push(fadeTimer);
 
     // Complete
     const completeTimer = setTimeout(() => {
       onComplete();
-    }, 7300);
+    }, 8200);
     timers.push(completeTimer);
 
     return () => timers.forEach(clearTimeout);
